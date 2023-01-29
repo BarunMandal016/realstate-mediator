@@ -8,54 +8,68 @@ const wishListModel = require("../../Models/wishListModel")
 const userDetailsModel = require("../../Models/UserDetailsModel")
 const sequelize = require("../../Config/sequelize-config")
 
-router.get("/getUser", async (req, res) => {
-  const userss = await UserModel.findAll()
-  res.json(userss)
+router.put("/update", async (req, res) => {
+  await UserModel.update(
+    { email: "barun123@gmail.com" },
+    {
+      where: {
+        username: "Barun"
+      }
+    }
+  )
+  res.send("Updated")
 })
 
-router.get("/getland_details", async (req, res) => {
+router.put("/update_land_details", async (req, res) => {
   try {
     const landDetail = await landDetailsModel.findByPk(req.params.id)
     if (!landDetail) {
       return res.status(404).json({ error: "LandDetail not found" })
     }
-    res.json(landDetail)
+    await landDetail.update(req.body)
+    res.json({ message: "LandDetail updated successfully" })
   } catch (error) {
-    res.status(400).json({ message: "cannot find land details" })
+    res.status(400).json({ message: error.message })
   }
 })
 
-router.get("/get_product", async (req, res) => {
+router.put("/update_products", async (req, res) => {
   try {
     const product = await ProductModel.findByPk(req.params.id)
     if (!product) {
       return res.status(404).json({ error: "Product not found" })
     }
+    await product.update(req.body)
     res.json(product)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
 })
 
-router.get("/get_wishlist", async (req, res) => {
+router.put("/update_wishlist", async (req, res) => {
   try {
-    const wishlistItems = await wishListModel.findAll({
-      where: { user_id: req.params.user_id }
+    const updatedWishlistItem = await wishListModel.update(req.body, {
+      where: {
+        id: req.params.id
+      }
     })
-    res.json(wishlistItems)
+    res.json(updatedWishlistItem)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
 })
 
-router.get("/get_user_details", async (req, res) => {
+router.put("/update_user_details", async (req, res) => {
   try {
     const userDetail = await userDetailsModel.findOne({
-      where: { user_id: req.params.user_id }
+      where: {
+        user_id: req.params.user_id
+      }
     })
     if (!userDetail) {
       return res.status(404).json({ error: "User detail not found" })
     }
+    await userDetail.update(req.body)
     res.json(userDetail)
   } catch (error) {
     res.status(400).json({ error: error.message })
