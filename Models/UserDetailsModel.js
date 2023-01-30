@@ -3,8 +3,7 @@ const { DataTypes, Model } = require("sequelize");
 
 class userDetailsModel extends Model {}
 
-userDetailsModel.init(
-  {
+userDetailsModel.init({
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -57,5 +56,5 @@ userDetailsModel.init(
   }
 );
 
-// userDetailsModel.sync({force : true})
+// userDetailsModel.sync()
 module.exports = userDetailsModel;

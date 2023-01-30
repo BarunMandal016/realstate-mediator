@@ -75,3 +75,6 @@ router.put("/update_user_details", async (req, res) => {
     res.status(400).json({ error: error.message })
   }
 })
+
+
+module.exports = router

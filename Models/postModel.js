@@ -3,8 +3,7 @@ const { DataTypes, Model } = require("sequelize");
 
 class PostModel extends Model {}
 
-PostModel.init(
-  {
+PostModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -46,7 +45,8 @@ PostModel.init(
     sequelize,
     modelName: "posts",
   }
-);
+)
+
 // PostModel.sync()
 
 module.exports = PostModel;

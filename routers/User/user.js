@@ -10,7 +10,7 @@ const UserModel = require("../../Models/UserModel")
 const jwt = require("jsonwebtoken")
 const { verifyToken } = require("../User/userCommands")
 
-const time = 10000
+
 
 router.use(verifyToken)
 router.use(getRouter)

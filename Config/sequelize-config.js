@@ -3,7 +3,7 @@ const {Sequelize, DataTypes} = require("sequelize")
 const sequelize = new Sequelize({
     host: 'localhost',
     username : "root",
-    password : "root",
+    password : "123456",
     database : "real_estate",
     dialect: 'mysql',
     timezone : "+05:45"

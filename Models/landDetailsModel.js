@@ -3,8 +3,7 @@ const { DataTypes, Model } = require("sequelize");
 
 class landDetailsModel extends Model {}
 
-landDetailsModel.init(
-  {
+landDetailsModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -77,8 +76,9 @@ landDetailsModel.init(
   },
   {
     sequelize,
-    modelName: "landDetails",
+    modelName: "land_details",
   }
-);
+)
+
 // landDetailsModel.sync()
 module.exports = landDetailsModel;

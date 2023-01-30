@@ -8,7 +8,15 @@ const wishListModel = require("../../Models/wishListModel")
 const userDetailsModel = require("../../Models/UserDetailsModel")
 const sequelize = require("../../Config/sequelize-config")
 
-router.get("/getUser", async (req, res) => {
+router.get("/fetch_user-details", (req, res)=>{
+  res.status(200).json({
+    status: true,
+    message : "fetch successfully",
+    user : req.userDetails
+  })
+})
+
+router.get("/get-user", async (req, res) => {
   const userss = await UserModel.findAll()
   res.json(userss)
 })
@@ -61,3 +69,6 @@ router.get("/get_user_details", async (req, res) => {
     res.status(400).json({ error: error.message })
   }
 })
+
+
+module.exports = router;
